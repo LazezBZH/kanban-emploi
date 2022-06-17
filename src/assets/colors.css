@@ -1,0 +1,34 @@
+/* CSS HEX 
+--blue-sapphire: #006e90ff;
+--carrot-orange: #f18f01ff;
+--columbia-blue: #adcad6ff;
+--android-green: #99c24dff;
+--maximum-blue: #41bbd9ff;
+
+ CSS HSL
+--blue-sapphire: hsla(194, 100%, 28%, 1);
+--carrot-orange: hsla(36, 99%, 47%, 1);
+--columbia-blue: hsla(198, 33%, 76%, 1);
+--android-green: hsla(81, 49%, 53%, 1);
+--maximum-blue: hsla(192, 67%, 55%, 1);
+
+SCSS HEX 
+$blue-sapphire: #006e90ff;
+$carrot-orange: #f18f01ff;
+$columbia-blue: #adcad6ff;
+$android-green: #99c24dff;
+$maximum-blue: #41bbd9ff;
+
+ SCSS HSL
+$blue-sapphire: hsla(194, 100%, 28%, 1);
+$carrot-orange: hsla(36, 99%, 47%, 1);
+$columbia-blue: hsla(198, 33%, 76%, 1);
+$android-green: hsla(81, 49%, 53%, 1);
+$maximum-blue: hsla(192, 67%, 55%, 1);
+
+ SCSS RGB 
+$blue-sapphire: rgba(0, 110, 144, 1);
+$carrot-orange: rgba(241, 143, 1, 1);
+$columbia-blue: rgba(173, 202, 214, 1);
+$android-green: rgba(153, 194, 77, 1);
+$maximum-blue: rgba(65, 187, 217, 1);*/

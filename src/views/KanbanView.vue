@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
-    <div class="home-banner">
+  <div class="kanban">
+    <div class="kanban-banner">
       <BannerCompo
         msg="Gérez votre recherche d'emploi"
-        msg2=" Créez vos fiches"
+        msg2=" Consultez et gérez vos fiches"
       />
     </div>
-    <h3>cpoj zvpj z</h3>
+    <h3>opcjoeé</h3>
   </div>
 </template>
 
@@ -15,25 +15,25 @@
 import BannerCompo from "@/components/BannerCompo.vue";
 
 export default {
-  name: "HomeView",
+  name: "KanbanView",
   components: {
     BannerCompo,
   },
 };
 </script>
 <style>
-.home {
-  background-color: rgba(173, 202, 214, 0.3);
+.kanban {
+  background-color: rgba(153, 194, 77, 0.3);
   padding: 2rem 0.5rem;
 }
-.home-banner {
-  background-color: rgba(173, 202, 214, 0.7);
+.kanban-banner {
+  background-color: rgba(153, 194, 77, 0.7);
   padding: 2rem 0.2rem;
 }
-.home h1 {
-  color: rgb(0, 63, 82);
+.kanban h1 {
+  color: rgb(72, 93, 33);
 }
-.home h2 {
-  color: rgb(0, 110, 144);
+.kanban h2 {
+  color: rgb(105, 137, 47);
 }
 </style>

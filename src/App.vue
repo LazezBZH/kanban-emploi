@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <div class="r1"><router-link to="/">Home</router-link></div>
+    <div class="r2"><router-link to="/kanban">Kanban</router-link></div>
   </nav>
   <router-view />
 </template>
@@ -12,19 +12,45 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
 nav {
-  padding: 30px;
+  display: flex;
+  padding: 2rem;
+  margin-bottom: 0.5rem;
+  justify-content: center;
 }
-
 nav a {
+  text-decoration: none;
+}
+nav .r1 a {
   font-weight: bold;
-  color: #2c3e50;
+  font-size: 2rem;
+  padding: 0.2rem;
+  color: rgb(0, 110, 144);
+  margin-right: 1.5rem;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+nav .r1 a.router-link-exact-active {
+  color: rgb(173, 202, 214);
+  border-bottom: solid 0.3rem rgb(0, 110, 144);
+}
+nav .r2 a {
+  font-weight: bold;
+  color: rgb(105, 137, 47);
+  font-size: 2rem;
+  padding: 0.2rem;
+  margin-left: 1.5rem;
+}
+
+nav .r2 a.router-link-exact-active {
+  color: rgb(153, 194, 77);
+  border-bottom: solid 0.3rem rgb(105, 137, 47);
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
 }
 </style>
