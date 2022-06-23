@@ -1,10 +1,11 @@
 let answer = [];
+answer = JSON.parse(localStorage.getItem("answer-vue"));
 
 const storageKey = "answer-vue";
 
 function create(ans) {
   if (answer === null) {
-    answer = JSON.parse(localStorage.getItem("answer-vue"));
+    answer = [];
   }
   answer = [ans, ...answer];
   console.log("answ", answer);
@@ -35,6 +36,7 @@ function save() {
 
 function retrieveAnswer() {
   const fromLocalStorage = localStorage.getItem(storageKey);
+  console.log("local ans", fromLocalStorage);
   return JSON.parse(fromLocalStorage);
 }
 function convertCase(theadConvert) {

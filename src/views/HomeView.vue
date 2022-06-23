@@ -35,7 +35,6 @@ import SpontaneousForm from "@/components/SpontaneousForm.vue";
 import spontaneousServices from "@/services/spontaneous.js";
 import AnswerForm from "@/components/AnswerForm.vue";
 import answerServices from "@/services/answer.js";
-
 export default {
   name: "HomeView",
   data() {
@@ -56,20 +55,20 @@ export default {
     toggleAnswerForm: function () {
       this.revelebis2 = !this.revelebis2;
     },
+  },
+  setup() {
+    function addSpontaneous(data) {
+      console.log("coucou");
+      console.log("Home.vue | addSpontaneous()", data);
+      spontaneousServices.create(data);
+    }
 
-    setup() {
-      function addSpontaneous(data) {
-        console.log("coucou");
-        console.log("Home.vue | addSpontaneous()", data);
-        spontaneousServices.create(data);
-      }
-      function addAnswer(data) {
-        console.log("coucou");
-        console.log("Home.vue | addAnswer()", data);
-        answerServices.create(data);
-      }
-      return { addSpontaneous, addAnswer };
-    },
+    function addAnswer(data) {
+      console.log("coucou");
+      console.log("Home.vue | addAnswer()", data);
+      answerServices.create(data);
+    }
+    return { addSpontaneous, addAnswer };
   },
 };
 </script>
@@ -93,7 +92,6 @@ export default {
   width: 30%;
   max-width: 30rem;
   margin: 2rem auto 50vh auto;
-
   color: white;
   font-size: 1.5rem;
   font-weight: bold;

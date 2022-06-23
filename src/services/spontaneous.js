@@ -1,10 +1,11 @@
 let spontaneous = [];
+spontaneous = JSON.parse(localStorage.getItem("spontaneous-vue"));
 
 const storageKey = "spontaneous-vue";
 
 function create(spont) {
   if (spontaneous === null) {
-    spontaneous = JSON.parse(localStorage.getItem("spontaneous-vue"));
+    spontaneous = [];
   }
   spontaneous = [spont, ...spontaneous];
   console.log("sponta", spontaneous);
@@ -16,7 +17,7 @@ function read() {
 }
 
 function updateSpont(spont) {
-  const index = spontaneous.findIndex((emp) => emp.id === spont.id);
+  const index = spontaneous.findIndex((spon) => spon.id === spont.id);
   if (index === -1) {
     return;
   }
@@ -25,7 +26,7 @@ function updateSpont(spont) {
 }
 
 function deleteSpont(id) {
-  spontaneous = spontaneous.filter((emp) => emp.id !== id);
+  spontaneous = spontaneous.filter((spon) => spon.id !== id);
   save();
 }
 
@@ -35,6 +36,7 @@ function save() {
 
 function retrieveSpontaneous() {
   const fromLocalStorage = localStorage.getItem(storageKey);
+  console.log("local spont", fromLocalStorage);
   return JSON.parse(fromLocalStorage);
 }
 function convertCase(theadConvert) {

@@ -2,14 +2,15 @@
   <div class="form-answer" v-if="revelebis2">
     <div class="overlay">
       <modale v-bind:revele="revele" v-bind:toggleModal="toggleModal"></modale>
-      <div
-        class="close"
-        v-on:click="
-          toggleAnswerForm();
-          resetForm();
-        "
-      >
-        X
+      <div class="close">
+        <button
+          v-on:click="
+            toggleAnswerForm();
+            resetForm();
+          "
+        >
+          Retour à l'accueil
+        </button>
       </div>
       <div class="form-title-answer">
         <h3>Fiche réponse à une annonce</h3>
@@ -21,15 +22,17 @@
             <p>Intitulé</p>
             <input
               type="text"
-              placeholder="Lien vers l'offre"
+              placeholder="Intitulé du poste"
               v-model="jobName"
             />
+            <p class="avert">obligatoire</p>
             <p>Lien</p>
             <input
               type="url"
               placeholder="Lien vers l'offre"
               v-model="jobLink"
             />
+            <p class="avert">obligatoire</p>
             <p>Type de poste</p>
             <input type="text" placeholder="CDD, CDI..." v-model="jobType" />
 
@@ -165,14 +168,16 @@
             </div>
           </div>
         </div>
-        <button v-on:click="toggleModal">Save &#x00AE;</button>
+        <button :disabled="!isFormValid" v-on:click="toggleModal">
+          Enregistrer &#x00AE;
+        </button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import MyFormModal from "../components/MyFormModal.vue";
 export default {
   name: "AnswerForm",
@@ -188,6 +193,7 @@ export default {
   methods: {
     toggleModal: function () {
       this.revele = !this.revele;
+      window.scrollTo({ top: 0 });
     },
   },
   emits: ["createanswer"],
@@ -222,7 +228,6 @@ export default {
     let staff2Linkedin = ref("");
     let staff2Mail = ref("");
     let staff2Phone = ref("");
-
     function createAnswer() {
       const answer = {
         id: Date.now(),
@@ -261,7 +266,6 @@ export default {
       context.emit("createanswer", answer);
       resetForm();
     }
-
     function resetForm() {
       jobName.value = "";
       jobLink.value = "";
@@ -294,6 +298,13 @@ export default {
       staff2Mail.value = "";
       staff2Phone.value = "";
     }
+    const isFormValid = computed(() => {
+      if (jobName.value.length > 1 && jobLink.value.length > 1) {
+        return true;
+      } else {
+        return false;
+      }
+    });
     return {
       jobName,
       jobLink,
@@ -327,6 +338,7 @@ export default {
       staff2Phone,
       createAnswer,
       resetForm,
+      isFormValid,
     };
   },
 };
@@ -348,7 +360,6 @@ export default {
   height: 1.5rem;
   margin-bottom: 0.5rem;
 }
-
 .form-title-answer {
   width: 50%;
   margin: 2rem auto;
@@ -359,20 +370,23 @@ export default {
   background-color: rgba(0, 110, 144, 0.8);
   border: 0.5rem ridge #006e90ff;
 }
-
 button {
-  width: 5rem;
+  width: 8rem;
   height: 2rem;
   margin: 1rem auto 0;
-  background-color: #444444;
   color: white;
   padding-bottom: 1.6rem;
   padding-top: 0.6rem;
   font-weight: bold;
   background-color: rgba(0, 110, 144, 0.8);
   border: 0.5rem ridge #006e90ff;
+  border-radius: 0.5rem;
 }
-
+button:disabled {
+  color: rgba(255, 0, 0, 1);
+  cursor: not-allowed;
+  border: 0.5rem ridge rgb(193, 192, 192);
+}
 .overlay {
   background-color: rgb(247, 245, 240);
   position: absolute;
@@ -381,20 +395,20 @@ button {
   left: 0;
   right: 0;
 }
-.close {
+.close button {
+  width: auto;
+  height: 4rem;
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  font-size: 1.5rem;
+  font-size: 0.6rem;
   font-weight: 200;
   background: rgba(0, 110, 144, 0.8);
   border: 0.5rem ridge #006e90ff;
   color: white;
   padding: 0.2rem 0.5rem;
-
   cursor: default;
 }
-
 .job {
   width: 60%;
   border: 2px solid rgba(0, 110, 144, 0.8);
@@ -413,7 +427,6 @@ button {
   padding: 0.2rem 5rem;
   margin: 1rem auto;
 }
-
 .contact {
   width: 100%;
   border-top: 2px solid rgba(0, 110, 144, 0.8);
@@ -456,5 +469,13 @@ button {
 .line {
   width: 0.2rem;
   background-color: rgba(0, 110, 144, 0.5);
+}
+.avert {
+  width: 70%;
+  margin: -0.3rem 0 0 0;
+  font-size: 0.7rem;
+  color: red;
+  font-style: italic;
+  text-align: right;
 }
 </style>

@@ -6,18 +6,23 @@
         msg2=" Consultez et gérez vos fiches"
       />
     </div>
-    <h3>opcjoeé</h3>
+    <AnswerView />
+    <SpontaneousView />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import BannerCompo from "@/components/BannerCompo.vue";
+import AnswerView from "@/components/AnswerView.vue";
+import SpontaneousView from "@/components/SpontaneousView.vue";
 
 export default {
   name: "KanbanView",
   components: {
     BannerCompo,
+    AnswerView,
+    SpontaneousView,
   },
 };
 </script>

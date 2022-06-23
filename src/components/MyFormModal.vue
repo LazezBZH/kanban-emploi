@@ -3,7 +3,8 @@
     <div class="overlay" v-on:click="toggleModal"></div>
     <div class="modale">
       <div>Fiche créée</div>
-      <div class="close" v-on:click="toggleModal">X</div>
+
+      <button class="close" @click="toggleModal">&#128473;</button>
     </div>
   </div>
 </template>
