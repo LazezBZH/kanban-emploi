@@ -13,6 +13,9 @@ function create(spont) {
 }
 function read() {
   spontaneous = retrieveSpontaneous();
+  if (spontaneous === null) {
+    spontaneous = [];
+  }
   return spontaneous;
 }
 
@@ -23,11 +26,13 @@ function updateSpont(spont) {
   }
   spontaneous[index] = spont;
   save(spont);
+  window.location.reload();
 }
 
 function deleteSpont(id) {
   spontaneous = spontaneous.filter((spon) => spon.id !== id);
   save();
+  window.location.reload();
 }
 
 function save() {

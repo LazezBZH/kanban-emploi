@@ -1182,6 +1182,7 @@ export default {
     const answers = ref([]);
     answers.value = answersService.read();
     console.log("test answ", answers);
+
     return {
       items: answers,
     };
@@ -1231,7 +1232,7 @@ export default {
       console.log("updateAnswertest", answer);
       answersService.updateAns(answer);
       answers.value = answersService.read();
-      window.location.reload();
+
       cancelEdit();
     }
     function cancelEdit() {

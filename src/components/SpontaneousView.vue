@@ -10,14 +10,14 @@
     <div class="drops">
       <div
         class="drop-zone"
-        @drop="onDrop($event, 1)"
+        @drop="onDrop($event, 5)"
         @dragover.prevent
         @dragenter.prevent
       >
         <div class="entete"><h2>Préparer candidature</h2></div>
-        <div v-if="listOne.length > 0">
+        <div v-if="listFive.length > 0">
           <div
-            v-for="sponta in listOne"
+            v-for="sponta in listFive"
             :key="sponta.id"
             :id="sponta.id"
             class="drag-el"
@@ -230,14 +230,14 @@
       </div>
       <div
         class="drop-zone"
-        @drop="onDrop($event, 2)"
+        @drop="onDrop($event, 6)"
         @dragover.prevent
         @dragenter.prevent
       >
         <div class="entete"><h2>Candidature envoyée</h2></div>
-        <div v-if="listTwo.length > 0">
+        <div v-if="listSix.length > 0">
           <div
-            v-for="sponta in listTwo"
+            v-for="sponta in listSix"
             :key="sponta.id"
             :id="sponta.id"
             class="drag-el"
@@ -450,14 +450,14 @@
       </div>
       <div
         class="drop-zone"
-        @drop="onDrop($event, 3)"
+        @drop="onDrop($event, 7)"
         @dragover.prevent
         @dragenter.prevent
       >
         <div class="entete"><h2>Terminé</h2></div>
-        <div v-if="listThree.length > 0">
+        <div v-if="listSeven.length > 0">
           <div
-            v-for="sponta in listThree"
+            v-for="sponta in listSeven"
             :key="sponta.id"
             :id="sponta.id"
             class="drag-el"
@@ -690,15 +690,15 @@ export default {
     };
   },
   computed: {
-    listOne() {
-      return this.items.filter((item) => item.list === 1);
+    listFive() {
+      return this.items.filter((item) => item.list === 5);
     },
 
-    listTwo() {
-      return this.items.filter((item) => item.list === 2);
+    listSix() {
+      return this.items.filter((item) => item.list === 6);
     },
-    listThree() {
-      return this.items.filter((item) => item.list === 3);
+    listSeven() {
+      return this.items.filter((item) => item.list === 7);
     },
   },
 
@@ -731,7 +731,7 @@ export default {
       console.log("updatesponta", sponta);
       spontaneousService.updateSpont(sponta);
       spontaneous.value = spontaneousService.read();
-      window.location.reload();
+
       cancelEdit();
     }
     function cancelEdit() {

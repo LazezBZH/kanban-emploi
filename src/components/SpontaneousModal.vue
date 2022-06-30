@@ -182,6 +182,7 @@ export default {
         staff2Linkedin: spontaneousToEdit.value.staff2Linkedin,
         staff2Mail: spontaneousToEdit.value.staff2Mail,
         staff2Phone: spontaneousToEdit.value.staff2Phone,
+        list: spontaneousToEdit.value.list,
       };
       console.log("spontaneousUpdated", spontaneousUpdated);
       context.emit("updatespontaneous", spontaneousUpdated);

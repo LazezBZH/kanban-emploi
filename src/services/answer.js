@@ -13,6 +13,9 @@ function create(ans) {
 }
 function read() {
   answer = retrieveAnswer();
+  if (answer === null) {
+    answer = [];
+  }
   return answer;
 }
 
@@ -22,12 +25,15 @@ function updateAns(ans) {
     return;
   }
   answer[index] = ans;
+
   save(ans);
+  window.location.reload();
 }
 
 function deleteAns(id) {
   answer = answer.filter((an) => an.id !== id);
   save();
+  window.location.reload();
 }
 
 function save() {
