@@ -36,7 +36,8 @@ nav .r1 a.router-link-exact-active {
   color: rgb(173, 202, 214);
   border-bottom: solid 0.3rem rgb(0, 110, 144);
 }
-nav .r2 a {
+nav .r2 a,
+nav .r3 a {
   font-weight: bold;
   color: rgb(105, 137, 47);
   font-size: 2rem;
@@ -44,6 +45,7 @@ nav .r2 a {
   margin-left: 1.5rem;
 }
 
+nav .r2 a.router-link-exact-active,
 nav .r2 a.router-link-exact-active {
   color: rgb(153, 194, 77);
   border-bottom: solid 0.3rem rgb(105, 137, 47);

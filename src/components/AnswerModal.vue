@@ -227,6 +227,7 @@ export default {
         staff2Linkedin: answerToEdit.value.staff2Linkedin,
         staff2Mail: answerToEdit.value.staff2Mail,
         staff2Phone: answerToEdit.value.staff2Phone,
+        list: answerToEdit.value.list,
       };
       console.log("answerUpdated", answerUpdated);
       context.emit("updateanswer", answerUpdated);

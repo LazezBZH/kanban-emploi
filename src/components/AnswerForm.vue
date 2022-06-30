@@ -261,6 +261,7 @@ export default {
         staff2Linkedin: staff2Job.value,
         staff2Mail: staff2Mail.value,
         staff2Phone: staff2Phone.value,
+        list: 1,
       };
       console.log("answ", answer);
       context.emit("createanswer", answer);
