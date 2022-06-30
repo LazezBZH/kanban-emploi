@@ -28,7 +28,14 @@ function updateSpont(spont) {
   save(spont);
   window.location.reload();
 }
-
+function updateSpontMove(spont) {
+  const index = spontaneous.findIndex((spon) => spon.id === spont.id);
+  if (index === -1) {
+    return;
+  }
+  spontaneous[index] = spont;
+  save(spont);
+}
 function deleteSpont(id) {
   spontaneous = spontaneous.filter((spon) => spon.id !== id);
   save();
@@ -50,4 +57,5 @@ export default {
   read,
   deleteSpont,
   updateSpont,
+  updateSpontMove,
 };

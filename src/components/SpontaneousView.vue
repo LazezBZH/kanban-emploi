@@ -712,7 +712,7 @@ export default {
       const itemID = evt.dataTransfer.getData("itemID");
       const item = this.items.find((item) => item.id == itemID);
       item.list = list;
-      spontaneousService.updateSpont(item);
+      spontaneousService.updateSpontMove(item);
     },
   },
   setup() {

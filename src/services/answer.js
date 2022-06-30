@@ -30,6 +30,16 @@ function updateAns(ans) {
   window.location.reload();
 }
 
+function updateAnsMove(ans) {
+  const index = answer.findIndex((an) => an.id === ans.id);
+  if (index === -1) {
+    return;
+  }
+  answer[index] = ans;
+
+  save(ans);
+}
+
 function deleteAns(id) {
   answer = answer.filter((an) => an.id !== id);
   save();
@@ -51,4 +61,5 @@ export default {
   read,
   deleteAns,
   updateAns,
+  updateAnsMove,
 };

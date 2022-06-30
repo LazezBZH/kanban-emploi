@@ -6,8 +6,16 @@
         msg2=" Consultez et gérez vos fiches"
       />
     </div>
-    <AnswerView />
-    <SpontaneousView />
+    <div class="kanban-btn">
+      <button v-on:click="a = true ? true : !a" :class="{ active: a }">
+        <h2>Consulter et gérer les réponses aux annonces</h2>
+      </button>
+      <button v-on:click="a = true ? false : a" :class="{ active: !a }">
+        <h2>Consulter et gérer les candidatures spontanées</h2>
+      </button>
+    </div>
+    <AnswerView v-if="a" />
+    <SpontaneousView v-if="!a" />
   </div>
 </template>
 
@@ -24,9 +32,14 @@ export default {
     AnswerView,
     SpontaneousView,
   },
+  data() {
+    return {
+      a: true,
+    };
+  },
 };
 </script>
-<style>
+<style scoped>
 .kanban {
   background-color: rgba(153, 194, 77, 0.3);
   padding: 2rem 0.5rem;
@@ -40,5 +53,27 @@ export default {
 }
 .kanban h2 {
   color: rgb(105, 137, 47);
+}
+.kanban-btn {
+  margin-top: 1rem;
+}
+.kanban-btn button {
+  background-color: rgb(105, 137, 47);
+  border: 0.3rem ridge rgb(105, 137, 47);
+  margin: auto 0.2rem;
+}
+.kanban-btn h2 {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: rgb(87, 6, 6);
+  border: none;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.kanban-btn h2:hover {
+  border: solid 0.5rem rgba(255, 255, 255, 0.3);
+}
+.active h2,
+.active h2:active {
+  border: solid 0.5rem rgb(150, 107, 107);
 }
 </style>
