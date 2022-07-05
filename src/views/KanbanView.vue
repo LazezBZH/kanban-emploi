@@ -7,10 +7,13 @@
       />
     </div>
     <div class="kanban-btn">
-      <button v-on:click="a = true ? true : !a" :class="{ active: a }">
+      <button v-on:click="a = true ? true : !a" :class="{ activeAnswer: a }">
         <h2>Consulter et gérer les réponses aux annonces</h2>
       </button>
-      <button v-on:click="a = true ? false : a" :class="{ active: !a }">
+      <button
+        v-on:click="a = true ? false : a"
+        :class="{ activeSpontaneous: !a }"
+      >
         <h2>Consulter et gérer les candidatures spontanées</h2>
       </button>
     </div>
@@ -39,7 +42,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .kanban {
   background-color: rgba(153, 194, 77, 0.3);
   padding: 2rem 0.5rem;
@@ -72,8 +75,12 @@ export default {
 .kanban-btn h2:hover {
   border: solid 0.5rem rgba(255, 255, 255, 0.3);
 }
-.active h2,
-.active h2:active {
+.activeAnswer h2,
+.activeAnswer h2:active {
   border: solid 0.5rem rgb(150, 107, 107);
+}
+.activeSpontaneous h2,
+.activeSpontaneous h2:active {
+  border: solid 0.5rem rgb(232, 182, 125);
 }
 </style>

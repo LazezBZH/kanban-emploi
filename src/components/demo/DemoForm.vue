@@ -1,31 +1,58 @@
 <template>
-  <div class="form-spontaneous" v-if="revelebis">
+  <div class="form-demo" v-if="revelebis3">
     <div class="overlay">
-      <modale v-bind:revele="revele" v-bind:toggleModal="toggleModal"></modale>
+      <modale
+        v-bind:revele="revele"
+        v-bind:toggleDemoModal="toggleDemoModalBis"
+      ></modale>
       <div class="close">
         <button
           v-on:click="
-            toggleSpontaneousForm();
+            toggleDemoForm();
             resetForm();
           "
         >
           Retour à l'accueil
         </button>
       </div>
-      <div class="form-title-spontaneous">
-        <h3>Fiche candidature spontanée</h3>
+      <div class="form-title-demo">
+        <h3>Fiche réponse à une annonce</h3>
       </div>
-      <form v-on:submit.prevent="createSpontaneous">
-        <div class="spontaneous">
-          <div class="firm">
-            <h4>Entreprise</h4>
-            <p>Nom</p>
+      <form v-on:submit.prevent="createDemo">
+        <div class="demo">
+          <div class="job">
+            <h4>OFFRE</h4>
+            <p>Intitulé</p>
             <input
               type="text"
-              placeholder="Capgemini, Mano Mano..."
-              v-model="firmName"
+              placeholder="Intitulé du poste"
+              v-model="jobName"
             />
             <p class="avert">obligatoire</p>
+            <p>Lien</p>
+            <input
+              type="url"
+              placeholder="Lien vers l'offre"
+              v-model="jobLink"
+            />
+            <p class="avert">obligatoire</p>
+            <p>Type de poste</p>
+            <input type="text" placeholder="CDD, CDI..." v-model="jobType" />
+
+            <p>Lieu d'emploi</p>
+            <input
+              type="text"
+              placeholder="Lieu de travail"
+              v-model="jobLocation"
+            />
+
+            <p>Salaire annuel</p>
+            <input type="number" placeholder="Salaire" v-model="jobPay" />
+          </div>
+          <div class="firm">
+            <h4>ENTREPRISE</h4>
+            <p>Nom</p>
+            <input type="text" placeholder="Firm's Name" v-model="firmName" />
             <p>Type d'entreprise</p>
             <input
               type="text"
@@ -33,22 +60,13 @@
               v-model="firmType"
             />
             <p>Pays d'origine</p>
-            <input
-              type="text"
-              placeholder="France, Canada..."
-              v-model="firmOrigin"
-            />
-            <p>Lieu d'emploi</p>
-            <input
-              type="text"
-              placeholder="Lieu de travail souhaité"
-              v-model="firmLocation"
-            />
+            <input type="text" placeholder="Créée en:" v-model="firmOrigin" />
+
             <p>Site de l'entreprise</p>
             <input type="url" placeholder="Site web" v-model="firmSite" />
             <p>LinkedIn</p>
             <input type="url" placeholder="LinkendIn" v-model="firmLinkedin" />
-            <p>welcome To The Jungle</p>
+            <p>Welcome To The Jungle</p>
             <input
               type="url"
               placeholder="Welcome to the jungle"
@@ -64,15 +82,27 @@
             />
           </div>
           <div class="contact">
-            <h4>Prise de contact</h4>
-            <p>Date premier contact</p>
-            <input type="date" v-model="firthDate" />
-            <p>Date de réponse</p>
-            <input type="date" v-model="answerDate" />
-            <p>Réponse</p>
-            <textarea placeholder="Réponse" v-model="txtAnswer" />
-            <p>Commentaire</p>
-            <textarea placeholder="Réponse" v-model="comment" />
+            <h4>CANDIDATURE</h4>
+            <div class="demos">
+              <div class="firstAnswer">
+                <p>Date de réponse à l'offre</p>
+                <input type="date" v-model="firthDate" />
+                <p>Date de réponse du recruteur</p>
+                <input type="date" v-model="answerDate" />
+                <p>Réponse du recruteur</p>
+                <textarea placeholder="Réponse" v-model="txtAnswer" />
+              </div>
+              <div class="relance">
+                <p>Date de relance</p>
+                <input type="date" v-model="relanceDate" />
+                <p>Date de réponse à la relance</p>
+                <input type="date" v-model="answerRelanceDate" />
+                <p>Réponse suite à relance</p>
+                <textarea placeholder="Réponse" v-model="txtRelanceAnswer" />
+                <p>Commentaires</p>
+                <textarea placeholder="Commentaires" v-model="comment" />
+              </div>
+            </div>
           </div>
           <div class="staffs">
             <h4>CONTACTS DANS L'ENTREPRISE</h4>
@@ -141,7 +171,7 @@
             </div>
           </div>
         </div>
-        <button :disabled="!isFormValid" v-on:click="toggleModal">
+        <button :disabled="!isFormValid" v-on:click="toggleDemoModal">
           Enregistrer &#x00AE;
         </button>
       </form>
@@ -151,30 +181,40 @@
 
 <script>
 import { ref, computed } from "vue";
-import MyFormModal from "../components/MyFormModal.vue";
+import MyFormDemoModal from "./MyFormDemoModal.vue";
 export default {
-  name: "SpontaneousForm",
-  props: ["revelebis", "toggleSpontaneousForm"],
+  name: "DemoForm",
+  props: ["revelebis3", "toggleDemoForm"],
   data() {
     return {
       revele: false,
     };
   },
   components: {
-    modale: MyFormModal,
+    modale: MyFormDemoModal,
   },
   methods: {
-    toggleModal: function () {
+    toggleDemoModal: function () {
       this.revele = !this.revele;
+
+      window.scrollTo({ top: 0 });
+    },
+    toggleDemoModalBis: function () {
+      this.revele = !this.revele;
+      window.location.reload();
       window.scrollTo({ top: 0 });
     },
   },
-  emits: ["createspontaneous"],
+  emits: ["createdemo"],
   setup(props, context) {
+    let jobName = ref("");
+    let jobLink = ref("");
+    let jobType = ref("");
+    let jobLocation = ref("");
+    let jobPay = ref("");
     let firmName = ref("");
-    let firmOrigin = ref("");
     let firmType = ref("");
-    let firmLocation = ref("");
+    let firmOrigin = ref("");
     let firmSite = ref("");
     let firmLinkedin = ref("");
     let firmJungle = ref("");
@@ -183,6 +223,9 @@ export default {
     let firthDate = ref("");
     let answerDate = ref("");
     let txtAnswer = ref("");
+    let relanceDate = ref("");
+    let answerRelanceDate = ref("");
+    let txtRelanceAnswer = ref("");
     let comment = ref("");
     let staff1Name = ref("");
     let staff1Job = ref("");
@@ -194,14 +237,17 @@ export default {
     let staff2Linkedin = ref("");
     let staff2Mail = ref("");
     let staff2Phone = ref("");
-
-    function createSpontaneous() {
-      const spontaneous = {
+    function createDemo() {
+      const demo = {
         id: Date.now(),
+        jobName: jobName.value,
+        jobLink: jobLink.value,
+        jobType: jobType.value,
+        jobLocation: jobLocation.value,
+        jobPay: jobPay.value,
         firmName: firmName.value,
-        firmOrigin: firmOrigin.value,
         firmType: firmType.value,
-        firmLocation: firmLocation.value,
+        firmOrigin: firmOrigin.value,
         firmSite: firmSite.value,
         firmLinkedin: firmLinkedin.value,
         firmJungle: firmJungle.value,
@@ -210,6 +256,9 @@ export default {
         firthDate: firthDate.value,
         answerDate: answerDate.value,
         txtAnswer: txtAnswer.value,
+        relanceDate: relanceDate.value,
+        answerRelanceDate: answerRelanceDate.value,
+        txtRelanceAnswer: txtRelanceAnswer.value,
         comment: comment.value,
         staff1Name: staff1Name.value,
         staff1Job: staff1Job.value,
@@ -221,17 +270,21 @@ export default {
         staff2Linkedin: staff2Job.value,
         staff2Mail: staff2Mail.value,
         staff2Phone: staff2Phone.value,
-        list: 5,
+        list: 8,
       };
-      console.log("spont", spontaneous);
-      context.emit("createspontaneous", spontaneous);
+      console.log("démo", demo);
+      context.emit("createdemo", demo);
       resetForm();
     }
     function resetForm() {
+      jobName.value = "";
+      jobLink.value = "";
+      jobType.value = "";
+      jobLocation.value = "";
+      jobPay.value = "";
       firmName.value = "";
-      firmOrigin.value = "";
       firmType.value = "";
-      firmLocation.value = "";
+      firmOrigin.value = "";
       firmSite.value = "";
       firmLinkedin.value = "";
       firmJungle.value = "";
@@ -240,6 +293,9 @@ export default {
       firthDate.value = "";
       answerDate.value = "";
       txtAnswer.value = "";
+      relanceDate.value = "";
+      answerRelanceDate.value = "";
+      txtRelanceAnswer.value = "";
       comment.value = "";
       staff1Name.value = "";
       staff1Job.value = "";
@@ -253,17 +309,21 @@ export default {
       staff2Phone.value = "";
     }
     const isFormValid = computed(() => {
-      if (firmName.value.length > 1) {
+      if (jobName.value.length > 1 && jobLink.value.length > 1) {
         return true;
       } else {
         return false;
       }
     });
     return {
+      jobName,
+      jobLink,
+      jobType,
+      jobLocation,
+      jobPay,
       firmName,
-      firmOrigin,
       firmType,
-      firmLocation,
+      firmOrigin,
       firmSite,
       firmLinkedin,
       firmJungle,
@@ -272,6 +332,9 @@ export default {
       firthDate,
       answerDate,
       txtAnswer,
+      relanceDate,
+      answerRelanceDate,
+      txtRelanceAnswer,
       comment,
       staff1Name,
       staff1Job,
@@ -283,7 +346,7 @@ export default {
       staff2Linkedin,
       staff2Mail,
       staff2Phone,
-      createSpontaneous,
+      createDemo,
       resetForm,
       isFormValid,
     };
@@ -293,41 +356,41 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.spontaneous {
+.demo {
   width: 50%;
   display: flex;
   flex-direction: column;
   margin: auto;
   text-align: left;
-  background-color: rgba(0, 110, 144, 0.3);
   padding: 2rem;
+  background-color: rgb(167, 138, 138);
 }
-.spontaneous input {
+.demo input {
   width: 70%;
   height: 1.5rem;
   margin-bottom: 0.5rem;
 }
-.form-title-spontaneous {
+.form-title-demo {
   width: 50%;
   margin: 2rem auto;
   margin-bottom: 1rem;
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: rgba(0, 110, 144, 0.8);
-  border: 0.5rem ridge #006e90ff;
+  background-color: rgb(143, 45, 45);
+  border: 0.5rem ridge rgb(143, 45, 45);
 }
+
 button {
   width: 8rem;
   height: 2rem;
   margin: 1rem auto 0;
-  background-color: #444444;
   color: white;
   padding-bottom: 1.6rem;
   padding-top: 0.6rem;
   font-weight: bold;
-  background-color: rgba(0, 110, 144, 0.8);
-  border: 0.5rem ridge #006e90ff;
+  background-color: rgb(143, 45, 45);
+  border: 0.5rem ridge rgb(143, 45, 45);
   border-radius: 0.5rem;
 }
 button:disabled {
@@ -335,51 +398,52 @@ button:disabled {
   cursor: not-allowed;
   border: 0.5rem ridge rgb(193, 192, 192);
 }
+.overlay {
+  background-color: rgb(236, 206, 206);
+  position: absolute;
+  top: 0;
+  bottom: -150rem;
+  left: 0;
+  right: 0;
+}
 .close button {
   width: auto;
   height: 4rem;
   position: absolute;
+
   top: 1.5rem;
   right: 1.5rem;
   font-size: 0.6rem;
   font-weight: 200;
-  background: rgba(0, 110, 144, 0.8);
-  border: 0.5rem ridge #006e90ff;
+
   color: white;
   padding: 0.2rem 0.5rem;
   cursor: default;
 }
-.overlay {
-  background-color: rgb(247, 245, 240);
-  position: absolute;
-  top: 0;
-  bottom: -110rem;
-  left: 0;
-  right: 0;
-}
 .job {
   width: 60%;
-  border: 2px solid rgba(0, 110, 144, 0.8);
+  border: 2px solid rgb(143, 45, 45);
   padding: 0.2rem 5rem;
   margin: auto;
 }
-.form-spontaneous h4 {
-  color: rgba(0, 110, 144, 1);
+.form-demo h4 {
+  color: rgb(143, 45, 45);
   font-size: 1.2rem;
   font-weight: bolder;
   margin-left: 2rem;
 }
 .firm {
   width: 50%;
-  border: 2px solid rgba(0, 110, 144, 0.8);
+  border: 2px solid rgb(143, 45, 45);
   padding: 0.2rem 5rem;
   margin: 1rem auto;
 }
 .contact {
   width: 100%;
-  border-top: 2px solid rgba(0, 110, 144, 0.8);
+  border-top: 2px solid rgb(143, 45, 45);
   margin: auto;
   text-align: center;
+  display: flex;
 }
 .contact input,
 .contact textarea {
@@ -388,10 +452,18 @@ button:disabled {
 .contact textarea {
   height: 5rem;
 }
+.contact h4 {
+  width: 10%;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+.demos {
+  width: 80%;
+}
 .staffs {
   margin-top: 1.5rem;
   padding-bottom: 1rem;
-  border: 2px solid rgba(0, 110, 144, 0.8);
+  border: 2px solid rgb(143, 45, 45);
 }
 .staff {
   width: 100%;
@@ -407,7 +479,7 @@ button:disabled {
 }
 .line {
   width: 0.2rem;
-  background-color: rgba(0, 110, 144, 0.5);
+  background-color: rgba(143, 45, 45, 0.5);
 }
 .avert {
   width: 70%;

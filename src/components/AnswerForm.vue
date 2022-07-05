@@ -451,7 +451,7 @@ button:disabled {
   width: 80%;
 }
 .staffs {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   padding-bottom: 1rem;
   border: 2px solid rgba(0, 110, 144, 0.8);
 }

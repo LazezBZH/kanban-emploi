@@ -881,7 +881,7 @@
         @dragover.prevent
         @dragenter.prevent
       >
-        <div class="entete"><h2>Terminé</h2></div>
+        <div class="entete"><h2>Réponse reçue</h2></div>
         <div v-if="listFour.length > 0">
           <div
             v-for="answer in listFour"
@@ -1277,8 +1277,12 @@ export default {
   border: 0.3rem solid rgb(72, 93, 33);
   border-radius: 1rem;
   background-color: rgb(231, 230, 230);
+  cursor: grab;
 }
-
+.drag-el:hover {
+  border: 0.5rem solid rgb(72, 93, 33);
+  background-color: rgb(236, 236, 201);
+}
 /*card*/
 
 .answer-all {

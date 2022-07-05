@@ -454,7 +454,7 @@
         @dragover.prevent
         @dragenter.prevent
       >
-        <div class="entete"><h2>Terminé</h2></div>
+        <div class="entete"><h2>Réponse reçue</h2></div>
         <div v-if="listSeven.length > 0">
           <div
             v-for="sponta in listSeven"
@@ -693,7 +693,6 @@ export default {
     listFive() {
       return this.items.filter((item) => item.list === 5);
     },
-
     listSix() {
       return this.items.filter((item) => item.list === 6);
     },
@@ -701,7 +700,6 @@ export default {
       return this.items.filter((item) => item.list === 7);
     },
   },
-
   methods: {
     startDrag(evt, item) {
       evt.dataTransfer.dropEffect = "move";
@@ -717,11 +715,9 @@ export default {
   },
   setup() {
     const spontaneous = ref([]);
-
     let isInEditMode = ref(false);
     let spontaneousToEdit = ref(null);
     spontaneous.value = spontaneousService.read();
-
     function toggle(sponta) {
       spontaneousToEdit.value = sponta;
       isInEditMode.value = true;
@@ -731,7 +727,6 @@ export default {
       console.log("updatesponta", sponta);
       spontaneousService.updateSpont(sponta);
       spontaneous.value = spontaneousService.read();
-
       cancelEdit();
     }
     function cancelEdit() {
@@ -742,7 +737,6 @@ export default {
       spontaneousService.deleteSpont(id);
       spontaneous.value = spontaneousService.read();
     }
-
     return {
       spontaneous,
       deleteSpontaneous,
@@ -767,11 +761,9 @@ export default {
   width: 30%;
   background-color: rgb(233, 210, 183);
   margin-bottom: 1rem;
-
   padding: 0.5rem;
   border: 0.3rem ridge rgb(244, 208, 168);
 }
-
 .drag-el {
   width: 90%;
   margin: 0.5rem auto;
@@ -779,9 +771,7 @@ export default {
   border-radius: 1rem;
   background-color: rgb(231, 230, 230);
 }
-
 /*card*/
-
 .sponta {
   height: 15rem;
   overflow-y: scroll;

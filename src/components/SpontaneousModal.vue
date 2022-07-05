@@ -146,6 +146,7 @@
 </template>
 <script>
 import { ref, computed } from "vue";
+
 export default {
   name: "SpontaneousModal",
   emits: ["updatespontaneous", "cancel"],
@@ -154,6 +155,7 @@ export default {
       require: true,
     },
   },
+
   setup(props, context) {
     let spontaneousToEdit = ref({ ...props.sponta });
 
@@ -186,7 +188,6 @@ export default {
       };
       console.log("spontaneousUpdated", spontaneousUpdated);
       context.emit("updatespontaneous", spontaneousUpdated);
-      window.scrollTo({ top: 0 });
     }
     function cancel() {
       context.emit("cancel");

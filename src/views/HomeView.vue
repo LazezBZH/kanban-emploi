@@ -11,18 +11,17 @@
       v-bind:toggleSpontaneousForm="toggleSpontaneousForm"
       @createspontaneous="addSpontaneous"
     />
+    <answerForm
+      v-bind:revelebis2="revelebis2"
+      v-bind:toggleAnswerForm="toggleAnswerForm"
+      @createanswer="addAnswer"
+    />
     <div class="formOpenBtn">
-      <button class="spontaneous-btn" v-on:click="toggleSpontaneousForm">
-        Créer une fiche candidature spontanée
-      </button>
-      <answerForm
-        v-bind:revelebis2="revelebis2"
-        v-bind:toggleAnswerForm="toggleAnswerForm"
-        @createanswer="addAnswer"
-      />
-
       <button class="answer-btn" v-on:click="toggleAnswerForm">
         Créer une fiche réponse à une offre
+      </button>
+      <button class="spontaneous-btn" v-on:click="toggleSpontaneousForm">
+        Créer une fiche candidature spontanée
       </button>
     </div>
   </div>

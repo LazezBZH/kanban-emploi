@@ -2,9 +2,17 @@
   <nav>
     <div class="r1"><router-link to="/">Home</router-link></div>
     <div class="r2"><router-link to="/kanban">Kanban</router-link></div>
+    <div class="r3">
+      <router-link to="/demo">Démo</router-link>
+    </div>
   </nav>
   <router-view />
 </template>
+<script>
+export default {
+  setup() {},
+};
+</script>
 
 <style>
 #app {
@@ -36,8 +44,7 @@ nav .r1 a.router-link-exact-active {
   color: rgb(173, 202, 214);
   border-bottom: solid 0.3rem rgb(0, 110, 144);
 }
-nav .r2 a,
-nav .r3 a {
+nav .r2 a {
   font-weight: bold;
   color: rgb(105, 137, 47);
   font-size: 2rem;
@@ -45,10 +52,21 @@ nav .r3 a {
   margin-left: 1.5rem;
 }
 
-nav .r2 a.router-link-exact-active,
 nav .r2 a.router-link-exact-active {
   color: rgb(153, 194, 77);
   border-bottom: solid 0.3rem rgb(105, 137, 47);
+}
+nav .r3 a {
+  font-weight: bold;
+  color: orangered;
+  font-size: 2rem;
+  padding: 0.2rem;
+  margin-left: 1.5rem;
+}
+
+nav .r3 a.router-link-exact-active {
+  color: orange;
+  border-bottom: solid 0.3rem orangered;
 }
 h1 {
   font-size: 3rem;
