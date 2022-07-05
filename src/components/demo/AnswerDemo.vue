@@ -15,7 +15,7 @@
     <div class="refresh">
       <button @click="refresh">
         <h2>
-          <span class="clic">Cliquez ici</span> ci les fiches pré-enregistrées
+          <span class="clic">Cliquez ici</span> si les fiches pré-enregistrées
           ne s'affichent pas à l'ouverture de la page. Vous pourrez ensuite
           ajouter, éditer, supprimer, glisser/déposer les fiches, tout est
           stocké dans le localstorage
