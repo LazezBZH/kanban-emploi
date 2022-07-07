@@ -470,6 +470,7 @@ export default {
   border-radius: 0.3rem;
   background: rgb(242, 163, 134);
   font-size: 1.2rem;
+  cursor: url("https://surlapage.fr/widget/cursors/16/1281092.gif"), default;
 }
 .download {
   margin: auto;

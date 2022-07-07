@@ -19,6 +19,11 @@
       <h2>Liens</h2>
       <ul>
         <li>
+          <a href="https://github.com/LazezBZH/kanban-emploi" target="_blank"
+            >Github</a
+          >
+        </li>
+        <li>
           <a href="https://vuejs.org/guide/introduction.html" target="_blank"
             >https://vuejs.org/guide/introduction.html</a
           >

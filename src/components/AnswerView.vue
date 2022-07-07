@@ -280,5 +280,6 @@ button {
   width: 7rem;
   position: absolute;
   right: 9%;
+  cursor: url("https://surlapage.fr/widget/cursors/16/1281092.gif"), default;
 }
 </style>
