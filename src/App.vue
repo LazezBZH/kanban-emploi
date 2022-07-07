@@ -5,6 +5,9 @@
     <div class="r3">
       <router-link to="/demo">Démo</router-link>
     </div>
+    <div class="r4">
+      <router-link to="/about">À propos</router-link>
+    </div>
   </nav>
   <router-view />
 </template>
@@ -67,6 +70,18 @@ nav .r3 a {
 nav .r3 a.router-link-exact-active {
   color: orange;
   border-bottom: solid 0.3rem orangered;
+}
+nav .r4 a {
+  font-weight: bold;
+  color: black;
+  font-size: 2rem;
+  padding: 0.2rem;
+  margin-left: 1.5rem;
+}
+
+nav .r4 a.router-link-exact-active {
+  color: grey;
+  border-bottom: solid 0.3rem black;
 }
 h1 {
   font-size: 3rem;

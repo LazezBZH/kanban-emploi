@@ -5,7 +5,10 @@
     @updateanswer="updateAnswer($event)"
     @cancel="cancelEdit"
   />
-  <div>
+  <button class="download">
+    <a :href="url" download="réponses.json">Sauvegarder les réponses</a>
+  </button>
+  <div class="annonces-all">
     <h2 class="annonces">ANNONCES</h2>
     <div class="drops">
       <div
@@ -125,8 +128,14 @@ export default {
     answers.value = answersService.read();
     console.log("test answ", answers);
 
+    var json = JSON.stringify(answers.value, null, "\t");
+    var blob = new Blob([json], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    console.log(url);
+
     return {
       items: answers,
+      url,
     };
   },
   computed: {
@@ -199,9 +208,12 @@ export default {
 };
 </script>
 <style scoped>
+.annonces-all {
+  width: 59.5%;
+  margin: auto;
+}
 .annonces {
   color: rgb(78, 57, 57);
-  width: 94.2%;
   margin: 2rem auto auto auto;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
@@ -211,16 +223,17 @@ export default {
   border-radius: 2rem 2rem 0 0;
 }
 .drops {
-  width: 95%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: auto;
+  background-color: rgb(168, 131, 131);
 }
 .drop-zone {
   width: 22%;
   background-color: rgb(242, 194, 194);
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 0.5%;
   border: 0.3rem ridge rgb(242, 194, 194);
 }
 .entete {
@@ -256,5 +269,16 @@ button {
   color: white;
   padding: 0.4rem;
   cursor: pointer;
+}
+.download a {
+  text-decoration: none;
+  color: rgb(36, 48, 13);
+  font-weight: bold;
+  cursor: url("https://surlapage.fr/widget/cursors/16/1281092.gif"), default;
+}
+.download {
+  width: 7rem;
+  position: absolute;
+  right: 9%;
 }
 </style>

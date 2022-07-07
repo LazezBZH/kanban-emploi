@@ -6,6 +6,7 @@
         msg2=" Consultez et gérez vos fiches"
       />
     </div>
+
     <div class="kanban-btn">
       <button v-on:click="a = true ? true : !a" :class="{ activeAnswer: a }">
         <h2>Consulter et gérer les réponses aux annonces</h2>
@@ -23,7 +24,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import BannerCompo from "@/components/BannerCompo.vue";
 import AnswerView from "@/components/AnswerView.vue";
 import SpontaneousView from "@/components/SpontaneousView.vue";
@@ -82,5 +82,24 @@ export default {
 .activeSpontaneous h2,
 .activeSpontaneous h2:active {
   border: solid 0.5rem rgb(232, 182, 125);
+}
+
+.upload-input {
+  height: 5rem;
+  position: relative;
+  background-color: red;
+}
+.fake-input,
+.file-input {
+  position: absolute;
+  left: 0;
+  height: 5rem;
+}
+.fake-input {
+  display: flex;
+}
+.file-input {
+  z-index: 2;
+  opacity: 0;
 }
 </style>

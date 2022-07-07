@@ -5,7 +5,10 @@
     @updatespontaneous="updateSpontaneous($event)"
     @cancel="cancelEdit"
   />
-  <div>
+  <button class="download">
+    <a :href="url" download="cadidatures.json">Sauvegarder les réponses</a>
+  </button>
+  <div class="sponta-all">
     <h2 class="spontas">CANDIDATURES</h2>
     <div class="drops">
       <div
@@ -100,8 +103,15 @@ export default {
     const spontaneous = ref([]);
     spontaneous.value = spontaneousService.read();
     console.log("test spont", spontaneous);
+
+    var json = JSON.stringify(spontaneous.value, null, "\t");
+    var blob = new Blob([json], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    console.log(url);
+
     return {
       items: spontaneous,
+      url,
     };
   },
   computed: {
@@ -126,6 +136,9 @@ export default {
       const item = this.items.find((item) => item.id == itemID);
       item.list = list;
       spontaneousService.updateSpontMove(item);
+    },
+    handleFileUpload(e) {
+      this.form.icon = e.target.files[0];
     },
   },
   setup() {
@@ -166,9 +179,12 @@ export default {
 </script>
 
 <style scoped>
+.sponta-all {
+  width: 59.5%;
+  margin: auto;
+}
 .spontas {
   color: rgb(169, 58, 10);
-  width: 59.5%;
   margin: 2rem auto auto auto;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
@@ -178,16 +194,17 @@ export default {
   border-radius: 2rem 2rem 0 0;
 }
 .drops {
-  width: 60%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: auto;
+  background-color: rgb(232, 182, 125);
 }
 .drop-zone {
-  width: 30%;
+  width: 31%;
   background-color: rgb(233, 210, 183);
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 0.5%;
   border: 0.3rem ridge rgb(244, 208, 168);
 }
 .entete {
@@ -223,5 +240,16 @@ button {
   color: white;
   padding: 0.4rem;
   cursor: pointer;
+}
+.download a {
+  text-decoration: none;
+  color: rgb(96, 3, 3);
+  font-weight: bold;
+  cursor: url("https://surlapage.fr/widget/cursors/16/1281092.gif"), default;
+}
+.download {
+  width: 7rem;
+  position: absolute;
+  right: 9%;
 }
 </style>

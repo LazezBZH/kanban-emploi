@@ -11,119 +11,126 @@
     v-bind:toggleDemoForm="toggleDemoForm"
     @createdemo="addDemo"
   />
-  <div class="demo-btn">
-    <div class="refresh">
-      <button @click="refresh">
-        <h2>
-          <span class="clic">Cliquez ici</span> si les fiches pré-enregistrées
-          ne s'affichent pas à l'ouverture de la page. Vous pourrez ensuite
-          ajouter, éditer, supprimer, glisser/déposer les fiches, tout est
-          stocké dans le localstorage
-        </h2>
-      </button>
+  <div class="demo-all">
+    <div class="demo-btn">
+      <div class="refresh">
+        <button @click="refresh">
+          <h2>
+            <span class="clic">Cliquez ici</span> si les fiches pré-enregistrées
+            ne s'affichent pas à l'ouverture de la page. Vous pourrez ensuite
+            ajouter, éditer, supprimer, glisser/déposer les fiches, tout est
+            stocké dans le localstorage
+          </h2>
+        </button>
+      </div>
+      <div class="formOpenBtn">
+        <button class="demo-button" v-on:click="toggleDemoForm">
+          Créer une fiche réponse à une offre
+        </button>
+      </div>
+      <div class="download">
+        <button>
+          <a :href="url" download="démo.json">Sauvegarder la démo</a>
+        </button>
+      </div>
     </div>
-    <div class="formOpenBtn">
-      <button class="demo-button" v-on:click="toggleDemoForm">
-        Créer une fiche réponse à une offre
-      </button>
-    </div>
-  </div>
 
-  <div>
-    <h2 class="annonces">ANNONCES</h2>
-    <div class="drops">
-      <div
-        class="drop-zone"
-        @drop="onDrop($event, 8)"
-        @dragover.prevent
-        @dragenter.prevent
-      >
-        <div class="entete"><h2>Préparer réponse</h2></div>
-        <div v-if="listEight.length > 0">
-          <div
-            v-for="demo in listEight"
-            :key="demo.id"
-            :id="demo.id"
-            class="drag-el"
-            draggable="true"
-            @dragstart="startDrag($event, demo)"
-          >
-            <DemoCard :demo="demo" />
-            <div class="btn">
-              <button @click="() => deleteDemo(demo.id)">Supprimer</button>
-              <button @click="() => toggle(demo)">Modifier</button>
+    <div class="annonces-all">
+      <h2 class="annonces">ANNONCES</h2>
+      <div class="drops">
+        <div
+          class="drop-zone"
+          @drop="onDrop($event, 8)"
+          @dragover.prevent
+          @dragenter.prevent
+        >
+          <div class="entete"><h2>Préparer réponse</h2></div>
+          <div v-if="listEight.length > 0">
+            <div
+              v-for="demo in listEight"
+              :key="demo.id"
+              :id="demo.id"
+              class="drag-el"
+              draggable="true"
+              @dragstart="startDrag($event, demo)"
+            >
+              <DemoCard :demo="demo" />
+              <div class="btn">
+                <button @click="() => deleteDemo(demo.id)">Supprimer</button>
+                <button @click="() => toggle(demo)">Modifier</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="drop-zone"
-        @drop="onDrop($event, 9)"
-        @dragover.prevent
-        @dragenter.prevent
-      >
-        <div class="entete"><h2>Réponse envoyée, prévoir relance</h2></div>
-        <div v-if="listNine.length > 0">
-          <div
-            class="drag-el"
-            draggable="true"
-            @dragstart="startDrag($event, demo)"
-            v-for="demo in listNine"
-            :key="demo.id"
-            :id="demo.id"
-          >
-            <DemoCard :demo="demo" />
-            <div class="btn">
-              <button @click="() => deleteDemo(demo.id)">Supprimer</button>
-              <button @click="() => toggle(demo)">Modifier</button>
+        <div
+          class="drop-zone"
+          @drop="onDrop($event, 9)"
+          @dragover.prevent
+          @dragenter.prevent
+        >
+          <div class="entete"><h2>Réponse envoyée, prévoir relance</h2></div>
+          <div v-if="listNine.length > 0">
+            <div
+              class="drag-el"
+              draggable="true"
+              @dragstart="startDrag($event, demo)"
+              v-for="demo in listNine"
+              :key="demo.id"
+              :id="demo.id"
+            >
+              <DemoCard :demo="demo" />
+              <div class="btn">
+                <button @click="() => deleteDemo(demo.id)">Supprimer</button>
+                <button @click="() => toggle(demo)">Modifier</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="drop-zone"
-        @drop="onDrop($event, 10)"
-        @dragover.prevent
-        @dragenter.prevent
-      >
-        <div class="entete"><h2>Relance effectuée</h2></div>
-        <div v-if="listTen.length > 0">
-          <div
-            v-for="demo in listTen"
-            :key="demo.id"
-            :id="demo.id"
-            class="drag-el"
-            draggable="true"
-            @dragstart="startDrag($event, demo)"
-          >
-            <DemoCard :demo="demo" />
-            <div class="btn">
-              <button @click="() => deleteDemo(demo.id)">Supprimer</button>
-              <button @click="() => toggle(demo)">Modifier</button>
+        <div
+          class="drop-zone"
+          @drop="onDrop($event, 10)"
+          @dragover.prevent
+          @dragenter.prevent
+        >
+          <div class="entete"><h2>Relance effectuée</h2></div>
+          <div v-if="listTen.length > 0">
+            <div
+              v-for="demo in listTen"
+              :key="demo.id"
+              :id="demo.id"
+              class="drag-el"
+              draggable="true"
+              @dragstart="startDrag($event, demo)"
+            >
+              <DemoCard :demo="demo" />
+              <div class="btn">
+                <button @click="() => deleteDemo(demo.id)">Supprimer</button>
+                <button @click="() => toggle(demo)">Modifier</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="drop-zone"
-        @drop="onDrop($event, 11)"
-        @dragover.prevent
-        @dragenter.prevent
-      >
-        <div class="entete"><h2>Réponse reçue</h2></div>
-        <div v-if="listEleven.length > 0">
-          <div
-            v-for="demo in listEleven"
-            :key="demo.id"
-            :id="demo.id"
-            class="drag-el"
-            draggable="true"
-            @dragstart="startDrag($event, demo)"
-          >
-            <DemoCard :demo="demo" />
-            <div class="btn">
-              <button @click="() => deleteDemo(demo.id)">Supprimer</button>
-              <button @click="() => toggle(demo)">Modifier</button>
+        <div
+          class="drop-zone"
+          @drop="onDrop($event, 11)"
+          @dragover.prevent
+          @dragenter.prevent
+        >
+          <div class="entete"><h2>Réponse reçue</h2></div>
+          <div v-if="listEleven.length > 0">
+            <div
+              v-for="demo in listEleven"
+              :key="demo.id"
+              :id="demo.id"
+              class="drag-el"
+              draggable="true"
+              @dragstart="startDrag($event, demo)"
+            >
+              <DemoCard :demo="demo" />
+              <div class="btn">
+                <button @click="() => deleteDemo(demo.id)">Supprimer</button>
+                <button @click="() => toggle(demo)">Modifier</button>
+              </div>
             </div>
           </div>
         </div>
@@ -151,9 +158,15 @@ export default {
     demos.value = demosService.read();
     console.log("test answ", demos);
 
+    var json = JSON.stringify(demos.value, null, "\t");
+    var blob = new Blob([json], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    console.log(url);
+
     return {
       revelebis3: false,
       items: demos,
+      url,
     };
   },
   computed: {
@@ -444,6 +457,23 @@ export default {
   cursor: pointer;
   font-size: 1.2rem;
 }
+.download a {
+  text-decoration: none;
+  color: rgb(143, 45, 45);
+  font-weight: bold;
+  cursor: url("https://surlapage.fr/widget/cursors/16/1281092.gif"), default;
+}
+.download button {
+  padding: 0.5rem;
+  margin: auto 2rem auto auto;
+  border: solid rgb(143, 45, 45) 0.5rem;
+  border-radius: 0.3rem;
+  background: rgb(242, 163, 134);
+  font-size: 1.2rem;
+}
+.download {
+  margin: auto;
+}
 .demo-btn {
   display: flex;
 }
@@ -452,9 +482,13 @@ export default {
   font-weight: bolder;
   color: rgb(108, 30, 2);
 }
+
+.annonces-all {
+  width: 65%;
+  margin: auto;
+}
 .annonces {
   color: rgb(246, 230, 230);
-  width: 94.2%;
   margin: 2rem auto auto auto;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
@@ -464,16 +498,17 @@ export default {
   border-radius: 2rem 2rem 0 0;
 }
 .drops {
-  width: 95%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: auto;
+  background-color: rgb(143, 45, 45);
 }
 .drop-zone {
   width: 22%;
   background-color: rgb(242, 163, 134);
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 0.5%;
   border: 0.3rem ridge rgb(242, 163, 134);
 }
 .entete {

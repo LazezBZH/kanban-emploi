@@ -296,7 +296,7 @@ export default {
   border-radius: 2rem;
 }
 img {
-  height: 5rem;
+  height: 3rem;
 }
 h3 {
   color: rgb(72, 93, 33);
